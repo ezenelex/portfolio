@@ -1,0 +1,64 @@
+{
+    "experience" : [
+        {
+            "time_period": "SEPT 2022 - APR 2023",
+            "title": "Embedded Software Engineer Intern - Sierra Wireless",
+            "description": "● Developed embedded software for a SD card reader for device bootup through tailored Linux startup scripts, automating firmware execution for seamless functionality\n● Performed system integration by enabling critical Linux kernel modules and GPIOs during bootup\n● Tested SD reader functionality and documented results thoroughly\n● Detected and resolved a hardware design flaw by keenly observing unexpected SD card reader behavior, leading to proactive hardware revision for future iterations",
+            "skills": ["C", "Linux", "Yocto", "Bitbake", "Git"]
+        },
+        {
+            "time_period": "MAY - AUG 2021",
+            "title": "Frontend Developer - Radisys",
+            "description": "● Developed software to integrate speech recognition and natural language processing into commercial deployment\n● Designed UI/UX for an online real-time virtual assistant accessed by video call using HTML, JS, CSS\n● Delivered and demonstrated a working system during internal and customer presentations\n● Profiled a live speech recognition solution through automated Python scripts for accuracy and performance",
+            "skills": ["HTML", "JavaScript", "CSS", "Linux", "Python"]
+        },
+        {
+            "time_period": "2015 - 2022",
+            "title": "Instructional Assistant",
+            "description": "● Guided students aged 3-5 through their Kumon worksheets as an Early Learners Assistant\n● Developed a strong interest for learning within the students shown by their good attitudes coming into class each day\n● Assisted math students with their worksheets with difficulty up to calculus as an Instructional Assistant",
+            "skills": ["Math", "Education", "Data Entry"]
+        }
+    ],
+    "projects": [
+        {
+            "time_period": "SEPT 2024",
+            "title": "Traceroute Visualizer - Personal Project",
+            "description": "● Created a web app to visualize the path an IP packet takes from source to destination on a 3D globe.\n● Implemented custom shader effects on the 3D globe to emulate an atmosphere\n● Used web sockets to send the traceroute IP hops from the server to the client for rendering",
+            "skills": ["Node.js", "Three.js", "JavaScript", "Socket.io"],
+            "image": "/public/assets/traceroute-visualizer.jpg",
+            "link": "https://github.com/ezenelex/traceroute-visualizer"
+        },
+        {
+            "time_period": "MAR - APR 2024",
+            "title": "Automatic Plant Caretaker - Embedded Group Project",
+            "description": "● Developed software to control an LED display in an automatic plant caretaker system using PRU programming on a Beaglebone Green to ensure precise timing for data transmission.\n● Calibrated temperature sensors and contributed to the development of a Node.js web app, enabling remote control and monitoring of plant care metrics, including soil moisture, ambient temperature, and light levels.",
+            "skills": ["Linux", "C", "3D Modeling", "3D Printing", "Node.js", "JavaScript"],
+            "image": "/public/assets/plantpal.jpg",
+            "link": "https://github.com/CMPT433-PlantPal?view_as=public"
+        },
+        {
+            "time_period": "JUNE 2024",
+            "title": "Automatic Aquarium Caretaker - Personal Embedded Project",
+            "description": "● Developed software on a Raspberry Pi to automatically feed my fish by rotating a servo, measure the temperature of the water, and capture a live video feed of the tank.\n● Hosted a Node.js web app on the Pi to allow me to feed the fish remotely, view a graph of the temperature over time, and watch the live camera feed",
+            "skills": ["Linux", "C", "3D Modeling", "3D Printing", "Node.js", "JavaScript"],
+            "image": "/public/assets/fishpi.jpg",
+            "link": "https://github.com/ezenelex/fishpi"
+        },
+        {
+            "time_period": "MAY - AUG 2022",
+            "title": "Automated Price Comparisons Tool - Group Project for Coast Appliances",
+            "description": "● Worked with a team of four to develop multisite web scraping functionality using Node.js to obtain retail websites’ product data \n● Stored the retrieved data in a PostgreSQL database for post processing and comparison\n● Designed a user friendly UI in tabular format to efficiently compare prices across multiple retailers\n● Worked closely with a member from Coast Appliances to ensure the product met the requirements",
+            "skills": ["PostgreSQL", "Node.js", "HTML", "JavaScript", "CSS", "Web Scraping"],
+            "image": "/public/assets/coast-appliances-scraper.jpg",
+            "link": "https://www.youtube.com/watch?v=pGF_zn2Trlk"
+        },
+        {
+            "time_period": "MAY 2021",
+            "title": "LED Word Clock - Personal Embedded Project",
+            "description": "● Designed a display panel which strategically illuminates letters in a grid with individually addressable LEDs to spell the current time in five minute intervals (e.g. “It is five to ten o’clock”)\n● Integrated functionality to convert UTC time to five minute intervals to display the correct words",
+            "skills": ["Python", "Linux", "3D Modeling", "3D Printing"],
+            "image": "/public/assets/word-clock.jpg",
+            "link": "https://github.com/ezenelex/word-clock"
+        }
+    ]
+}

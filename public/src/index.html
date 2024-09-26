@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+	<!-- <link rel="stylesheet" type="text/css" href="/public/src/style.css"> -->
+	<head lang="en">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="./public/src/output.css" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<title>My first three.js app</title>
+		<!-- 
+			Import map is not available in all browsers.
+			This is necessary to serve the three path so that other imports can access it. 
+		-->
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "./node_modules/three/build/three.module.js",
+					"three/OrbitControls": "./node_modules/three/examples/jsm/controls/OrbitControls.js"
+				}
+			}
+		</script>
+	</head>
+
+	<!-- Problems: -->
+	<!-- 1: two scrollbars -->
+	<!-- 2: nav links dont glow properly or take u anywhere -->
+	<!-- 3: nav links hitbox too wide -->
+
+
+	<body class="m-0 w-full h-full font-sans bg-background">
+		<div id="glow" class="h-full w-full pointer-events-none fixed inset-0 z-60 transition duration-300 lg:absolute" style="background: radial-gradient(600px at 1316px 366px, rgba(29, 78, 216, 0.15), transparent 80%);"></div>
+		<!-- <button id="switchCameraButton" class="bg-red-200">Switch Camera</button> -->
+
+		<!-- The left half of the screen -->
+		<div class="lg:top-0 lg:left-0 lg:w-1/2 lg:h-full lg:absolute flex lg:flex-row flex-col lg:justify-end w-full z-10 ">
+			<div class="lg:w-3/5 relative lg:h-full flex justify-center items-center w-full h-full ">
+				<div class="relative lg:w-4/5 lg:h-4/5 md:w-2/3 lg:m-0 flex flex-col w-full h-full ">
+					<div class="lg:w-full lg:h-1/2 flex flex-col lg:gap-0 gap-10 justify-evenly w-2/3 h-full md:pl-0 pl-10">
+						<div>
+							<p class="font-bold text-3xl w-full text-text_primary lg:mt-0 mt-10">Osman Saleem</p>
+							<p class="lg:w-2/3 text-text_secondary w-full mt-5">I am a Computing Science student at Simon Fraser University graduating in December 2024</p>
+						</div>
+						
+						<ul id="nav-list" class="z-40">
+							<li id="about-link" class="text-text_secondary hover:text-text_skill hover:translate-x-5 transition-transform duration-150">About</li>
+							<li id="experience-link" class="text-text_secondary hover:text-text_skill hover:translate-x-5 transition-transform duration-150">Experience</li>
+							<li id="projects-link" class="text-text_secondary hover:text-text_skill hover:translate-x-5 transition-transform duration-150">Projects</li>
+						</ul>
+
+						<div class="flex gap-2">
+							<div class="w-5 h-5 fill-text_secondary hover:fill-text_skill hover:text-text_skill hover:-translate-y-3 transition-transform duration-150">
+								<a href="https://github.com/ezenelex">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+								</a>
+							</div>
+							<div class="w-5 h-5 fill-text_secondary hover:fill-text_skill hover:text-text_skill hover:-translate-y-3 transition-transform duration-150">
+								<a href="https://www.linkedin.com/in/osman-s/">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+								</a>
+							</div>
+							<div class="w-5 h-5 fill-text_secondary hover:fill-text_skill hover:text-text_skill hover:-translate-y-3 transition-transform duration-150">
+								<a href="mailto:osman_saleem@outlook.com">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"/></svg>
+								</a>
+							</div>
+							<div class="w-5 h-5 fill-text_secondary hover:fill-text_skill hover:text-text_skill hover:-translate-y-3 transition-transform duration-150">
+								<a href="https://soundcloud.com/ezenelex">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M639.8 298.6c-1.3 23.1-11.5 44.8-28.4 60.5s-39.2 24.4-62.3 24.1h-218c-4.8 0-9.4-2-12.8-5.4s-5.3-8-5.3-12.8V130.2c-.2-4 .9-8 3.1-11.4s5.3-6.1 9-7.7c0 0 20.1-13.9 62.3-13.9c25.8 0 51.1 6.9 73.3 20.1c17.3 10.2 32.3 23.8 44.1 40.1s20 34.8 24.2 54.4c7.5-2.1 15.3-3.2 23.1-3.2c11.7-.1 23.3 2.2 34.2 6.7S606.8 226.6 615 235s14.6 18.3 18.9 29.3s6.3 22.6 5.9 34.3zm-354-153.5c.1-1 0-2-.3-2.9s-.8-1.8-1.5-2.6s-1.5-1.3-2.4-1.7s-1.9-.6-2.9-.6s-2 .2-2.9 .6s-1.7 1-2.4 1.7s-1.2 1.6-1.5 2.6s-.4 1.9-.3 2.9c-6 78.9-10.6 152.9 0 231.6c.2 1.7 1 3.3 2.3 4.5s3 1.8 4.7 1.8s3.4-.6 4.7-1.8s2.1-2.8 2.3-4.5c11.3-79.4 6.6-152 0-231.6zm-44 27.3c-.2-1.8-1.1-3.5-2.4-4.7s-3.1-1.9-5-1.9s-3.6 .7-5 1.9s-2.2 2.9-2.4 4.7c-7.9 67.9-7.9 136.5 0 204.4c.3 1.8 1.2 3.4 2.5 4.5s3.1 1.8 4.8 1.8s3.5-.6 4.8-1.8s2.2-2.8 2.5-4.5c8.8-67.8 8.8-136.5 .1-204.4zm-44.3-6.9c-.2-1.8-1-3.4-2.3-4.6s-3-1.8-4.8-1.8s-3.5 .7-4.8 1.8s-2.1 2.8-2.3 4.6c-6.7 72-10.2 139.3 0 211.1c0 1.9 .7 3.7 2.1 5s3.1 2.1 5 2.1s3.7-.7 5-2.1s2.1-3.1 2.1-5c10.5-72.8 7.3-138.2 .1-211.1zm-44 20.6c0-1.9-.8-3.8-2.1-5.2s-3.2-2.1-5.2-2.1s-3.8 .8-5.2 2.1s-2.1 3.2-2.1 5.2c-8.1 63.3-8.1 127.5 0 190.8c.2 1.8 1 3.4 2.4 4.6s3.1 1.9 4.8 1.9s3.5-.7 4.8-1.9s2.2-2.8 2.4-4.6c8.8-63.3 8.9-127.5 .3-190.8zM109 233.7c0-1.9-.8-3.8-2.1-5.1s-3.2-2.1-5.1-2.1s-3.8 .8-5.1 2.1s-2.1 3.2-2.1 5.1c-10.5 49.2-5.5 93.9 .4 143.6c.3 1.6 1.1 3.1 2.3 4.2s2.8 1.7 4.5 1.7s3.2-.6 4.5-1.7s2.1-2.5 2.3-4.2c6.6-50.4 11.6-94.1 .4-143.6zm-44.1-7.5c-.2-1.8-1.1-3.5-2.4-4.8s-3.2-1.9-5-1.9s-3.6 .7-5 1.9s-2.2 2.9-2.4 4.8c-9.3 50.2-6.2 94.4 .3 144.5c.7 7.6 13.6 7.5 14.4 0c7.2-50.9 10.5-93.8 .3-144.5zM20.3 250.8c-.2-1.8-1.1-3.5-2.4-4.8s-3.2-1.9-5-1.9s-3.6 .7-5 1.9s-2.3 2.9-2.4 4.8c-8.5 33.7-5.9 61.6 .6 95.4c.2 1.7 1 3.3 2.3 4.4s2.9 1.8 4.7 1.8s3.4-.6 4.7-1.8s2.1-2.7 2.3-4.4c7.5-34.5 11.2-61.8 .4-95.4z"/></svg>
+								</a>
+							</div>
+							<div class="w-5 h-5 fill-text_secondary hover:fill-text_skill hover:text-text_skill hover:-translate-y-3 transition-transform duration-150">
+								<a href="https://open.spotify.com/artist/08X1fL3fsnFgF7jl6fyyx2">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.2-62.5-37-155.7-51.9-238.6-29.4-4.8 1.3-7.4 2.6-11.9 2.6-10.7 0-19.4-8.7-19.4-19.4s5.2-17.8 15.5-20.7c27.8-7.8 56.2-13.6 97.8-13.6 64.9 0 127.6 16.1 177 45.5 8.1 4.8 11.3 11 11.3 19.7-.1 10.8-8.5 19.5-19.4 19.5zm31-76.2c-5.2 0-8.4-1.3-12.9-3.9-71.2-42.5-198.5-52.7-280.9-29.7-3.6 1-8.1 2.6-12.9 2.6-13.2 0-23.3-10.3-23.3-23.6 0-13.6 8.4-21.3 17.4-23.9 35.2-10.3 74.6-15.2 117.5-15.2 73 0 149.5 15.2 205.4 47.8 7.8 4.5 12.9 10.7 12.9 22.6 0 13.6-11 23.3-23.2 23.3z"/></svg>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div id="canvas-div" class="lg:w-full lg:h-1/2 lg:mt-0 lg:mb-0 w-72 h-60 mt-10  flex justify-center items-center lg:relative absolute bottom-[-40px] lg:right-0 md:right-2 right-0">
+						<canvas id="background" class="rounded-2xl lg:shadow-2xl md:p-0 m-10 lg:h-full"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- the right half of the screen -->
+		<div class="absolute right-0 lg:top-0 lg:w-1/2 lg:h-full flex lg:justify-start justify-center overflow-y-auto lg:mt-10">
+			<div class="m-10 lg:w-3/5 md:w-2/3 w-full">
+				<section id="about">
+					<p class="whitespace-pre-wrap text-text_secondary">
+Back in 2012, I decided to try my hand at creating custom Tumblr themes and tumbled head first into the rabbit hole of coding and web development. Fast-forward to today, and I’ve had the privilege of building software for an advertising agency, a start-up, a huge corporation, and a digital product studio.				
+									
+My main focus these days is building accessible user interfaces for our customers at Klaviyo. I most enjoy building software in the sweet spot where design and engineering meet — things that look good but are also built well under the hood. In my free time, I've also released an online video course that covers everything you need to know to build a web app with the Spotify API.
+					
+When I’m not at the computer, I’m usually rock climbing, reading, hanging out with my wife and two cats, or running around Hyrule searching for Korok seeds.
+					</p>
+				</section>
+
+				<section id="experience" class=""></section>
+				<section id="projects" class=""></section>
+			</div>
+		</div>
+
+
+		<script type="module" src="/public/src/main.js"></script>
+		<script>
+			document.addEventListener('mousemove', (e) => {
+				// console.log(e.clientX, e.clientY)
+				const glow = document.getElementById('glow')
+				glow.style.background = `radial-gradient(1500px at ${e.clientX}px ${e.clientY}px, rgba(29, 78, 216, 0.15), transparent 80%)`
+			})
+
+
+			function addExperienceDiv(time_period, title, description, skills, id) {
+				const experienceDiv = document.createElement('div')
+				experienceDiv.classList.add("mt-10", "flex")
+
+				const timePeriodDiv = document.createElement('div')
+				timePeriodDiv.classList.add("w-1/4", "h-full")
+				
+				const timePeriodP = document.createElement('p')
+				timePeriodP.classList.add("text-text_secondary", "text-xs", "mt-2")
+				timePeriodP.innerText = time_period
+				timePeriodDiv.appendChild(timePeriodP)
+
+				experienceDiv.appendChild(timePeriodDiv)
+
+				const contentDiv = document.createElement('div')
+				contentDiv.classList.add("w-4/5", "pl-5")
+				
+				const jobTitleP = document.createElement('p')
+				jobTitleP.classList.add("text-text_primary")
+				jobTitleP.innerText = title
+				contentDiv.appendChild(jobTitleP)
+
+				const jobDescriptionP = document.createElement('p')
+				jobDescriptionP.classList.add("text-text_secondary", "text-sm", "mt-3")
+				jobDescriptionP.innerText = description
+				contentDiv.appendChild(jobDescriptionP)
+
+				const skillsDiv = document.createElement('div')
+				skillsDiv.classList.add("flex", "flex-wrap", "gap-2", "mt-3")
+				
+				for (skill in skills) {
+					let skillDiv = document.createElement('div')
+					skillDiv.classList.add('bg-skill_background', 'rounded-2xl', 'inline-block', 'p-1')
+					let skillP = document.createElement('p')
+					skillP.classList.add("text-text_skill", 'p-1', "text-xs")
+					skillP.innerText = skills[skill]
+					skillDiv.appendChild(skillP)
+					skillsDiv.appendChild(skillDiv)
+				}
+
+				contentDiv.appendChild(skillsDiv)
+				experienceDiv.appendChild(contentDiv)
+
+				
+
+				document.getElementById('experience').appendChild(experienceDiv)
+			}
+
+			function addProjectDiv(time_period, title, description, skills, id, image, link) {
+				const projectDiv = document.createElement('div')
+				projectDiv.classList.add("mt-10", "flex")
+
+				const timePeriodDiv = document.createElement('div')
+				timePeriodDiv.classList.add("w-1/4", "h-full", "mt-2")
+
+				const timePeriodP = document.createElement('p')
+				timePeriodP.classList.add("text-text_secondary", "text-xs")
+				timePeriodP.innerText = time_period
+				timePeriodDiv.appendChild(timePeriodP)
+
+				const projectThumbnail = document.createElement('img')
+				projectThumbnail.src = image
+				projectThumbnail.classList.add("mt-3", "rounded-xl")
+				timePeriodDiv.appendChild(projectThumbnail)
+				projectDiv.appendChild(timePeriodDiv)
+
+				const contentDiv = document.createElement('div')
+				contentDiv.classList.add("w-4/5", "pl-5")
+
+				const projectTitleP = document.createElement('p')
+				projectTitleP.innerText = title
+				projectTitleP.classList.add("text-text_primary")
+				contentDiv.appendChild(projectTitleP)
+
+				const projectDescriptionP = document.createElement('p')
+				projectDescriptionP.innerText = description
+				projectDescriptionP.classList.add("text-text_secondary", "text-sm", "mt-3")
+				contentDiv.appendChild(projectDescriptionP)
+
+				const skillsDiv = document.createElement('div')
+				skillsDiv.classList.add("flex", "flex-wrap", "gap-2", "mt-3")
+
+				for (skill in skills) {
+					let skillDiv = document.createElement('div')
+					skillDiv.classList.add('bg-skill_background', 'rounded-xl', 'inline-block', 'p-1')
+					let skillP = document.createElement('p')
+					skillP.classList.add("text-text_skill", "p-1", "text-xs")
+					skillP.innerText = skills[skill]
+					skillDiv.appendChild(skillP)
+					skillsDiv.appendChild(skillDiv)
+				}
+
+				contentDiv.appendChild(skillsDiv)
+				projectDiv.appendChild(contentDiv)
+
+				document.getElementById('projects').appendChild(projectDiv)
+			}
+
+			fetch('/public/src/data.json')
+				.then(response => response.json())
+				.then(data => {
+					// console.log(data)
+					for (let e in data.experience) {
+						let info = data.experience[e]
+						addExperienceDiv(info.time_period, info.title, info.description, info.skills, 1)
+					}
+					for(let p in data.projects) {
+						let info = data.projects[p]
+						addProjectDiv(info.time_period, info.title, info.description, info.skills, 1, info.image, info.link)
+					}
+				})
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+canvas {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 20;
+};
+
+@keyframes highlight {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(10px);
+    }
+}
+
+.glow-effect {
+    pointer-events: none;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    transition: transform 0.1s ease;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.7);
+}

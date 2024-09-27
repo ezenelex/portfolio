@@ -7,7 +7,11 @@ canvas {
     top: 0;
     left: 0;
     z-index: 20;
-};
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 @keyframes highlight {
     from {
@@ -29,3 +33,7 @@ canvas {
     box-shadow: 0 0 50px rgba(255, 255, 255, 0.7);
 }
 
+* {
+    scrollbar-width: thin; /* Options: auto | thin */
+    scrollbar-color: #888 #0c1222; /* thumb color and track color */
+}

@@ -29,27 +29,27 @@
 	<!-- 3: nav links hitbox too wide -->
 
 
-	<body class="m-0 w-full h-full font-sans bg-background">
-		<div id="glow" class="h-full w-full pointer-events-none fixed inset-0 z-60 transition duration-300 lg:absolute" style="background: radial-gradient(600px at 1316px 366px, rgba(29, 78, 216, 0.15), transparent 80%);"></div>
+	<body class="m-0 p-0 w-full h-full font-sans bg-background">
+		<div id="glow" class="h-full w-full pointer-events-none fixed inset-0 z-60 transition duration-300 lg:absolute" style="background: radial-gradient(600px at 300px 300px, rgba(29, 78, 216, 0.15), transparent 80%);"></div>
 		<!-- <button id="switchCameraButton" class="bg-red-200">Switch Camera</button> -->
 
 		<!-- The left half of the screen -->
 		<div class="lg:top-0 lg:left-0 lg:w-1/2 lg:h-full lg:absolute flex lg:flex-row flex-col lg:justify-end w-full z-10 ">
 			<div class="lg:w-3/5 relative lg:h-full flex justify-center items-center w-full h-full ">
 				<div class="relative lg:w-4/5 lg:h-4/5 md:w-2/3 lg:m-0 flex flex-col w-full h-full ">
-					<div class="lg:w-full lg:h-1/2 flex flex-col lg:gap-0 gap-10 justify-evenly w-2/3 h-full md:pl-0 pl-10">
+					<div class="w-full lg:h-1/2 flex flex-col lg:gap-0 gap-10 justify-evenly h-full md:pl-0 pl-10 ">
 						<div>
 							<p class="font-bold text-3xl w-full text-text_primary lg:mt-0 mt-10">Osman Saleem</p>
-							<p class="lg:w-2/3 text-text_secondary w-full mt-5">I am a Computing Science student at Simon Fraser University graduating in December 2024</p>
+							<p class="sm:w-4/5 text-text_secondary w-full mt-5 pr-10">I am a Computing Science student at Simon Fraser University graduating in December 2024</p>
 						</div>
 						
-						<ul id="nav-list" class="z-40">
-							<li id="about-link" class="text-text_secondary hover:text-text_skill hover:translate-x-5 transition-transform duration-150">About</li>
-							<li id="experience-link" class="text-text_secondary hover:text-text_skill hover:translate-x-5 transition-transform duration-150">Experience</li>
-							<li id="projects-link" class="text-text_secondary hover:text-text_skill hover:translate-x-5 transition-transform duration-150">Projects</li>
+						<ul id="nav-list" class="z-40 w-20">
+							<li id="about-link" class="text-text_secondary hover:text-text_skill hover:translate-x-5 transition-transform duration-150"><a href="#about">About</a></li>
+							<li id="experience-link" class="text-text_secondary hover:text-text_skill hover:translate-x-5 transition-transform duration-150"><a href="#experience">Experience</a></li>
+							<li id="projects-link" class="text-text_secondary hover:text-text_skill hover:translate-x-5 transition-transform duration-150"><a href="#projects">Projects</a></li>
 						</ul>
 
-						<div class="flex gap-2">
+						<div class="flex gap-2 z-40">
 							<div class="w-5 h-5 fill-text_secondary hover:fill-text_skill hover:text-text_skill hover:-translate-y-3 transition-transform duration-150">
 								<a href="https://github.com/ezenelex">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
@@ -77,18 +77,19 @@
 							</div>
 						</div>
 					</div>
-					<div id="canvas-div" class="lg:w-full lg:h-1/2 lg:mt-0 lg:mb-0 w-72 h-60 mt-10  flex justify-center items-center lg:relative absolute bottom-[-40px] lg:right-0 md:right-2 right-0">
+					<div id="canvas-div" class="lg:w-full lg:h-1/2 lg:mt-0 lg:mb-0 lg:right-0 lg:relative md:w-72 md:h-60 md:bottom-[-60px] md:right-10 sm:w-52 sm:h-44 sm:right-24 sm:bottom-[-40px] w-52 h-44 mt-10 flex justify-center items-center absolute bottom-0 right-10">
 						<canvas id="background" class="rounded-2xl lg:shadow-2xl md:p-0 m-10 lg:h-full"></canvas>
 					</div>
+
 				</div>
 			</div>
 		</div>
 
 		<!-- the right half of the screen -->
-		<div class="absolute right-0 lg:top-0 lg:w-1/2 lg:h-full flex lg:justify-start justify-center overflow-y-auto lg:mt-10">
+		<div class="absolute right-0 lg:w-1/2 lg:h-full flex lg:justify-start justify-center overflow-y-auto">
 			<div class="m-10 lg:w-3/5 md:w-2/3 w-full">
 				<section id="about">
-					<p class="whitespace-pre-wrap text-text_secondary">
+					<p class="whitespace-pre-wrap text-text_secondary lg:mt-10">
 In 2018 I started University studying engineering in the Mechatronic Systems Engineering program at SFU. I learned alot from robotics to fluid dynamics to physics and circuit design, but during the time I couldn't help but realize that I was interested in the computing part the most. I switched into Computing Science two years in and stuck with it, and have not regretted it.			
 									
 My main focus these days is honing in my skills by creating projects. For fun I enjoy creating embedded systems that solve problems around the house (and because they give me an excuse to use my 3D printer), and web apps. I grew up gaming, which interested me early on in 3D visuals - as you can see by a 3D model of my room. Try moving it with your mouse or finger!
@@ -97,8 +98,14 @@ When I’m not working or learning, I’m usually gaming, making electronic musi
 					</p>
 				</section>
 
-				<section id="experience" class=""></section>
-				<section id="projects" class=""></section>
+				
+				<section id="experience" class="">
+					<div class="flex justify-start gap-3 align-middle mt-10"><div class="w-full h-[1px] translate-y-3 bg-slate-800"></div><p class="text-lg text-text_primary">Experience</p><div class="w-full h-[1px] translate-y-3 bg-slate-800"></div></div>
+				</section>
+				
+				<section id="projects" class="">
+					<div class="flex justify-start gap-3 align-middle mt-10"><div class="w-full h-[1px] translate-y-3 bg-slate-800"></div><p class="text-lg text-text_primary">Projects</p><div class="w-full h-[1px] translate-y-3 bg-slate-800"></div></div>
+				</section>
 			</div>
 		</div>
 
@@ -110,8 +117,7 @@ When I’m not working or learning, I’m usually gaming, making electronic musi
 				const glow = document.getElementById('glow')
 				glow.style.background = `radial-gradient(1500px at ${e.clientX}px ${e.clientY}px, rgba(29, 78, 216, 0.15), transparent 80%)`
 			})
-
-
+			
 			function addExperienceDiv(time_period, title, description, skills, id) {
 				const experienceDiv = document.createElement('div')
 				experienceDiv.classList.add("mt-10", "flex")
@@ -134,10 +140,17 @@ When I’m not working or learning, I’m usually gaming, making electronic musi
 				jobTitleP.innerText = title
 				contentDiv.appendChild(jobTitleP)
 
-				const jobDescriptionP = document.createElement('p')
-				jobDescriptionP.classList.add("text-text_secondary", "text-sm", "mt-3")
-				jobDescriptionP.innerText = description
-				contentDiv.appendChild(jobDescriptionP)
+				const jobDescriptionUL = document.createElement('ul')
+				jobDescriptionUL.classList.add("pl-2")
+				jobDescriptionUL.style.listStyleType = "disc";
+				for(d in description) {
+					jobDescriptionLI = (document.createElement('li'))
+					jobDescriptionLI.innerText = description[d];
+					jobDescriptionLI.classList.add("text-text_secondary", "text-sm", "mt-3")
+					jobDescriptionUL.appendChild(jobDescriptionLI)
+				}
+				
+				contentDiv.appendChild(jobDescriptionUL)
 
 				const skillsDiv = document.createElement('div')
 				skillsDiv.classList.add("flex", "flex-wrap", "gap-2", "mt-3")
@@ -172,10 +185,13 @@ When I’m not working or learning, I’m usually gaming, making electronic musi
 				timePeriodP.innerText = time_period
 				timePeriodDiv.appendChild(timePeriodP)
 
+				const projectThumbnailLink = document.createElement('a')
+				projectThumbnailLink.href = link
 				const projectThumbnail = document.createElement('img')
 				projectThumbnail.src = image
-				projectThumbnail.classList.add("mt-3", "rounded-xl")
-				timePeriodDiv.appendChild(projectThumbnail)
+				projectThumbnail.classList.add("mt-3", "rounded-xl", "shadow-2xl")
+				projectThumbnailLink.appendChild(projectThumbnail)
+				timePeriodDiv.appendChild(projectThumbnailLink)
 				projectDiv.appendChild(timePeriodDiv)
 
 				const contentDiv = document.createElement('div')
@@ -186,10 +202,16 @@ When I’m not working or learning, I’m usually gaming, making electronic musi
 				projectTitleP.classList.add("text-text_primary")
 				contentDiv.appendChild(projectTitleP)
 
-				const projectDescriptionP = document.createElement('p')
-				projectDescriptionP.innerText = description
-				projectDescriptionP.classList.add("text-text_secondary", "text-sm", "mt-3")
-				contentDiv.appendChild(projectDescriptionP)
+				const projectDescriptionUL = document.createElement('ul')
+				projectDescriptionUL.classList.add("pl-2")
+				projectDescriptionUL.style.listStyleType = "disc";
+				for(d in description) {
+					projectDescriptionLI = (document.createElement('li'))
+					projectDescriptionLI.innerText = description[d];
+					projectDescriptionLI.classList.add("text-text_secondary", "text-sm", "mt-3")
+					projectDescriptionUL.appendChild(projectDescriptionLI)
+				}
+				contentDiv.appendChild(projectDescriptionUL)
 
 				const skillsDiv = document.createElement('div')
 				skillsDiv.classList.add("flex", "flex-wrap", "gap-2", "mt-3")

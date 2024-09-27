@@ -26,7 +26,7 @@
             "description": ["Created a web app to visualize the path an IP packet takes from source to destination on a 3D globe.", "Implemented custom shader effects on the 3D globe to emulate an atmosphere", "Used web sockets to send the traceroute IP hops from the server to the client for rendering"],
             "skills": ["Node.js", "Three.js", "JavaScript", "Socket.io"],
             "image": "/public/assets/traceroute-visualizer.jpg",
-            "link": "https://github.com/ezenelex/traceroute-visualizer"
+            "link": "http://osman-saleem.com:5000/"
         },
         {
             "time_period": "MAR - APR 2024",
